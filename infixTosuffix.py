@@ -1,4 +1,5 @@
 import Stack
+from fractions import Fraction
 
 
 class infix_to_suffix:
@@ -15,16 +16,16 @@ class infix_to_suffix:
             if element not in self.list_operators:
                 list_temp.append(element)
             elif element == "=":
-                if len(list_temp)!=0:
-                    str_temp=""
+                if len(list_temp) != 0:
+                    str_temp = ""
                     for i in range(0, len(list_temp)):
-                        str_temp=str_temp+list_temp.pop(0)
+                        str_temp = str_temp+list_temp.pop(0)
                     suffix_expression.append(str_temp)
             else:
-                if len(list_temp)!=0:
-                    str_temp=""
+                if len(list_temp) != 0:
+                    str_temp = ""
                     for i in range(0, len(list_temp)):
-                        str_temp=str_temp+list_temp.pop(0)
+                        str_temp = str_temp+list_temp.pop(0)
                     suffix_expression.append(str_temp)
                 if stack_operator.isEmpty() or element == "(":
                     stack_operator.push(element)
@@ -64,3 +65,24 @@ class infix_to_suffix:
             while not stack_operator.isEmpty():
                 suffix_expression.append(stack_operator.pop())
         return suffix_expression
+
+    def str_to_fraction(self,suf):
+        for x in range(len(suf)):
+            if suf[x] not in self.list_operators:
+                if suf[x].find('`') != -1:
+                    a = suf[x].split('`')
+                    inter = int(a[0])
+                    b = a[1]
+                else:
+                    inter = 0
+                    b = suf[x]
+                if b.find('/') != -1:
+                    c = b.split('/')
+                    denominator = int(c[1])
+                    numerator = int(c[0]) + inter * denominator
+                else:
+                    denominator = 1
+                    numerator = inter
+                new_num = Fraction(numerator, denominator)
+                suf[x] = new_num
+        return suf

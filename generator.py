@@ -80,19 +80,22 @@ class Ari_Expression():
         '''生成一个算术表达式的字符串形式'''
         self.str = ''
         i = 0
+        self.exp = []
         again = False
         for x in self.operators:
             if again:
-                self.str += x
+                self.str += x + ' '
             elif x == '(':
-                self.str += x
+                self.str += x + ' '
             elif x == ')':
-                self.str += self.str_num(self.nums[i])
+                self.str += self.str_num(self.nums[i]) + ' '
                 i += 1
-                self.str += x
+                self.str += x + ' '
                 again = True
             else:
-                self.str += self.str_num(self.nums[i])
-                self.str += x 
+                self.str += self.str_num(self.nums[i]) + ' '
+                self.str += x + ' '
                 i += 1
         self.str += self.str_num(self.nums[-1]) + ' ='
+
+
