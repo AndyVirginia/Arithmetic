@@ -11,6 +11,8 @@ def getResult(expression):
             n2 = stackValue.pop()
             n1 = stackValue.pop()
             result = cal(n1, n2, item)
+            if result < 0:
+                return -1
             stackValue.append(result)
         else:
             stackValue.append(item)

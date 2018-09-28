@@ -12,7 +12,7 @@ class Ari_Expression():
     def init_num(self, max_num):
         '''随机生成数'''
         denominator = random.randint(1, max_num)
-        numerator = random.randint(0, max_num*denominator)
+        numerator = random.randint(0, max_num)
         return Fraction(numerator, denominator)
 
     def insert_bracket(self):
