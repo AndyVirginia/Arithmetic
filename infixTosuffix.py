@@ -66,23 +66,24 @@ class infix_to_suffix:
                 suffix_expression.append(stack_operator.pop())
         return suffix_expression
 
-    def str_to_fraction(self,suf):
+    def str_to_fraction(self, suf):
         for x in range(len(suf)):
             if suf[x] not in self.list_operators:
-                if suf[x].find('`') != -1:
-                    a = suf[x].split('`')
+                y = suf[x].strip()
+                if y.find('`') == -1:
+                    if y.find('/') == -1:
+                        numerator =  int(y)
+                        denominator = 1
+                    else:
+                        a = y.split('/')
+                        numerator = int(a[0])
+                        denominator = int(a[1])
+                else:
+                    a = y.split('`')
                     inter = int(a[0])
-                    b = a[1]
-                else:
-                    inter = 0
-                    b = suf[x]
-                if b.find('/') != -1:
-                    c = b.split('/')
-                    denominator = int(c[1])
-                    numerator = int(c[0]) + inter * denominator
-                else:
-                    denominator = 1
-                    numerator = inter
-                new_num = Fraction(numerator, denominator)
+                    b = a[1].split('/')
+                    denominator = int(b[1])
+                    numerator = int(b[0]) + inter * denominator
+                new_num = Fraction(numerator,denominator)
                 suf[x] = new_num
         return suf
