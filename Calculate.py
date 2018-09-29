@@ -1,7 +1,5 @@
 from fractions import Fraction
 
-import generator
-import infixTosuffix
 import Stack
 
 def getResult(expression):

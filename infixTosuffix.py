@@ -8,6 +8,7 @@ class infix_to_suffix:
         self.pri_operators = {"+": 0, "-": 0, "×": 1, "÷": 1}
 
     def to_suffix_expression(self, expression):
+        '''生成逆波兰表达式'''
         stack_operator = Stack.Stack()
         suffix_expression = []
         list_temp = []
@@ -67,6 +68,7 @@ class infix_to_suffix:
         return suffix_expression
 
     def str_to_fraction(self, suf):
+        '''字符串转换为fraction类'''
         for x in range(len(suf)):
             if suf[x] not in self.list_operators:
                 y = suf[x].strip()

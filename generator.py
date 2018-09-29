@@ -97,5 +97,3 @@ class Ari_Expression():
                 self.str += x + ' '
                 i += 1
         self.str += self.str_num(self.nums[-1]) + ' ='
-
-
